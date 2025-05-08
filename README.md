@@ -21,7 +21,7 @@ This project is a backend REST API service built with Go, providing user authent
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/deepaksingh26/PAF.git
     cd PAF
     ```
 
