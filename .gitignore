@@ -1,0 +1,17 @@
+# Environment variables
+.env
+
+# Compiled executable files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go build output (if you build locally with a specific name, e.g., 'paf')
+paf # Or whatever your executable name is if you use `go build -o paf`
+
+# IDE / Editor specific files
+.idea/
+.vscode/
+*.DS_Store
