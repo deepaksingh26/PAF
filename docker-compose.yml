@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: paf_go_app
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URI: mongodb://sarojbajrang12:E6Nc7wY9sLtck5YY@mongo:27017/paf_auth_db?authSource=admin
+      JWT_SECRET_KEY: "037c4ef9b8c3cb9588988da83f63591eea68096aafa79efd79c4a08171176692"
+      MONGO_DATABASE_NAME: paf_auth_db
+
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:latest
+    container_name: paf_mongo_db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sarojbajrang12
+      MONGO_INITDB_ROOT_PASSWORD: E6Nc7wY9sLtck5YY
+      MONGO_INITDB_DATABASE: paf_auth_db
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

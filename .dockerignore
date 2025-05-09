@@ -1,0 +1,10 @@
+# Compiled binary (the Dockerfile handles building it)
+main
+paf_project
+
+# Git files
+.git
+.gitignore
+
+# Local environment file (not used by Docker Compose setup)
+.env

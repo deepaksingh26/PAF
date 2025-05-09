@@ -13,9 +13,10 @@ This project is a backend REST API service built with Go, providing user authent
 
 ## Prerequisites
 
-*   Go (version 1.18 or higher recommended)
-*   MongoDB (running instance, local or Atlas)
+*   Docker and Docker Compose must be installed on your system.
 *   Git
+(Optional) For local development outside of Docker:
+*   Go (version 1.23 or higher, matching the Dockerfile)
 
 ## Setup
 
@@ -25,30 +26,35 @@ This project is a backend REST API service built with Go, providing user authent
     cd PAF
     ```
 
-2.  **Install dependencies:**
-    The project uses Go modules. Dependencies will be fetched automatically when you build or run the project. You can also run:
+2.  **(Optional) For local development outside of Docker:**
+    If you plan to develop or run the Go application natively (without Docker), ensure Go dependencies are fetched:
     ```bash
     go mod tidy
     ```
 
-3.  **Configure Environment Variables:**
-    Create a `.env` file in the root of the project with the following content.
-
-    ```env
-    JWT_SECRET_KEY=""
-    MONGO_URI=""
-    MONGO_DATABASE_NAME=""
-    ```
-
 ## Running the Service
 
-Ensure your MongoDB instance is running and accessible.
+This project is configured to run using Docker and Docker Compose, which handles both the Go application and the MongoDB database.
+
+### Starting the Service
 
 From the project root directory, run the following command:
 
-```bash
-go run .
-```
+To build and run the application and a MongoDB database in containers.
+
+1.  Navigate to the project root directory.
+2.  Run the following command:
+    ```bash
+    docker compose up
+    ```
+    To run in detached mode (in the background):
+    ```bash
+    docker compose up -d
+    ```
+    To rebuild the Go application image if you've made code changes:
+    ```bash
+    docker compose up --build
+    ```
 
 You should see output similar to:
 ```
@@ -153,5 +159,5 @@ After revoking, try using the revoked token(s) with the `/protected` or `/refres
 *   `middleware.go`: Authentication middleware.
 *   `utils.go`: Utility functions like `respondJSON`.
 *   `constants.go`: Defines constants like `minute` and `hour`.
-*   `.env`: (To be created by user) Stores environment-specific configurations.
+<!-- *   `.env`: (To be created by user) Stores environment-specific configurations. -->
 *   `go.mod`, `go.sum`: Go module files.
