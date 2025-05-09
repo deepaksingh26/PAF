@@ -72,13 +72,7 @@ Replace placeholders like `<YOUR_EMAIL>`, `<YOUR_PASSWORD>`, `<ACCESS_TOKEN>`, a
 Creates a new user.
 
 ```bash
-curl -X POST \
-  http://localhost:8080/signup \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "email": "<YOUR_EMAIL>",
-    "password": "<YOUR_PASSWORD>"
-  }'
+ curl -X POST http://localhost:8080/signup -H "Content-Type: application/json" -d "{\"email\": \"test@example.com\", \"password\": \"password123\"}"
 ```
 **Expected Success Response:** `{"message":"User created successfully"}` (or tokens if implemented)
 
@@ -87,13 +81,7 @@ curl -X POST \
 Authenticates a user and returns an access token and a refresh token.
 
 ```bash
-curl -X POST \
-  http://localhost:8080/signin \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "email": "<YOUR_EMAIL>",
-    "password": "<YOUR_PASSWORD>"
-  }'
+  curl -X POST http://localhost:8080/signin -H "Content-Type: application/json" -d "{\"email\": \"test@example.com\", \"password\": \"password123\"}"
 ```
 **Expected Success Response:** `{"token":"<ACCESS_TOKEN>","refresh_token":"<REFRESH_TOKEN>"}`
 *(Save the `token` and `refresh_token` for subsequent requests)*
@@ -103,9 +91,7 @@ curl -X POST \
 Requires a valid access token in the Authorization header.
 
 ```bash
-curl -X GET \
-  http://localhost:8080/protected \
-  -H 'Authorization: Bearer <ACCESS_TOKEN>'
+curl -X GET http://localhost:8080/protected -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 **Expected Success Response:** `{"message":"Hello <YOUR_EMAIL>! You have accessed a protected route."}`
 
@@ -114,12 +100,7 @@ curl -X GET \
 Uses a refresh token to obtain a new access token.
 
 ```bash
-curl -X POST \
-  http://localhost:8080/refresh \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "refresh_token": "<REFRESH_TOKEN>"
-  }'
+curl -X POST http://localhost:8080/refresh -H "Content-Type: application/json" -d "{\"refresh_token\": \"<REFRESH_TOKEN>\"}"
 ```
 **Expected Success Response:** `{"token":"<NEW_ACCESS_TOKEN>"}`
 
